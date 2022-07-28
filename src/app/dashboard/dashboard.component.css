@@ -1,0 +1,9 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.chart-container {
+    width: 200;
+    height:210px;
+}
+#canvas2{
+    width: 190;
+    height:190px;
+}
