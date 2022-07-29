@@ -3,7 +3,7 @@ import { Chart, registerables } from 'chart.js';
 import { ChartsService } from 'app/services/charts.service';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppModule } from 'app/app.module';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
