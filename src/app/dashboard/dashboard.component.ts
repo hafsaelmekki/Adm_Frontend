@@ -3,6 +3,10 @@ import { Chart, registerables } from 'chart.js';
 import { ChartsService } from 'app/services/charts.service';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import {formatDate} from '@angular/common';
+import { FormGroup, FormControl, Validator, Validators } from "@angular/forms";
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -24,24 +28,33 @@ export class DashboardComponent{
 
 
  public checkoutForm = this.formBuilder.group({
-    fromDate: '',
-    toDate: ''
+    fromDate: new DatePipe('en-US'),
+    toDate: new DatePipe('en-US')
+    
   });
 
   constructor(private service: ChartsService, private formBuilder: FormBuilder,  private route: ActivatedRoute,private router:Router
     ) {
     Chart.register(...registerables);
-    Chart.defaults.color = "#000";
+    Chart.defaults.color = "#444";
   }
   
   onSubmit(): void {
-    
+    function convertDate(inputFormat) {
+      function pad(s) { return (s < 10) ? '0' + s : s; }
+      var d = new Date(inputFormat)
+      return [ d.getFullYear(), pad(d.getMonth()+1), pad(d.getDate())].join('-')
+    }
     // Process checkout data here
     console.warn('Your order has been submitted', this.checkoutForm.value);
     this.check = this.checkoutForm.value;
     this.fromDate = Object.values(this.check)[0];
     this.toDate = Object.values(this.check)[1];
-    console.log(this.toDate);
+    //convert the format date
+    this.fromDate = convertDate(this.fromDate);
+    this.toDate = convertDate(this.toDate)
+    
+
     //this.checkoutForm.reset();
 
       this.service.cryptoData(this.fromDate,this.toDate).subscribe(response => {
@@ -64,19 +77,20 @@ export class DashboardComponent{
             datasets: [
               {
                 label: "Sentiment",
-                backgroundColor: ["#115f9a", "#22a7f0"],
+                backgroundColor: ["#563CFC", "#22a7f0"],
                 data: this.sentimentValue,
               }
             ]
           }
           });
+  
           this.chartPie = new Chart('canvas2',{
             type: 'pie',
             data: {
               labels: this.sentimentKey,
               datasets: [{
                 label: "Sentiment",
-                backgroundColor: ["#bcbcbc", "#fe6601"],
+                backgroundColor: ["#563CFC", "#06C4F6"],
                 data: this.sentimentValue
               }]
             },
@@ -93,7 +107,7 @@ export class DashboardComponent{
             labels: this.DialectKey,
             datasets: [{
               label: "Dialect",
-              backgroundColor: ["#3e95cd", "#e1a692","#e2e2e2","#e8c3b9","#c45850"],
+              backgroundColor: ["#3e95cd", "#06C4F6","#115f9a","#563CFC","#06C4F6"],
               data: this.DialectValue
             }]
           },
@@ -119,7 +133,7 @@ export class DashboardComponent{
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['dashboard']);
   }); 
-
+  
     this.service.AllData().subscribe(response => {
       
       this.result = response;
@@ -140,7 +154,7 @@ export class DashboardComponent{
           datasets: [
             {
               label: "Sentiment",
-              backgroundColor: ["#115f9a", "#22a7f0"],
+              backgroundColor: ["#563CFC", "#22a7f0"],
               data: this.sentimentValue,
             }
           ]
@@ -153,7 +167,7 @@ export class DashboardComponent{
             labels: this.sentimentKey,
             datasets: [{
               label: "Sentiment",
-              backgroundColor: ["#bcbcbc", "#fe6601"],
+              backgroundColor: ["#563CFC", "#06C4F6"],
               data: this.sentimentValue
             }]
           },
@@ -170,7 +184,7 @@ export class DashboardComponent{
           labels: this.DialectKey,
           datasets: [{
             label: "Dialect",
-            backgroundColor: ["#3e95cd", "#e1a692","#e2e2e2","#e8c3b9","#c45850"],
+            backgroundColor: ["#3e95cd", "#06C4F6","#115f9a","#563CFC","#06C4F6"],
             data: this.DialectValue
           }]
         },

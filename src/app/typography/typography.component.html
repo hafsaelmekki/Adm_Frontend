@@ -2,27 +2,94 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
-        <div class="card-header card-header-danger">
-            <h4 class="card-title">Material Dashboard Heading</h4>
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Add Data</h4>
             <p class="card-category">Created using Roboto Font Family</p>
         </div>
         <div class="card-body">
             <div id="typography">
                 <div class="card-title">
-                    <h2>Typography</h2>
+                    <h6> You can insert Data here</h6>
                 </div>
                 <div class="row">
-                    <form method="post" id="myForm">
-                        <label for="taskname" style="font-size: 20px">Task name*:</label>
-                        <input type="text" name="taskname" id="taskname" />
-                        <label for="tasknumber" style="font-size: 20px">Task number*:</label>
-                        <input type="number" name="tasknumber" id="tasknumber" />
-                        <b><p style="display:inline"> * Cannot be null</p></b>
-                        <input type="button" value="Start" onclick="submitForm()">
-                     </form>
-                     <div id="response_area"><div>
+                    <mat-form-field class="col-lg-6" appearance="fill">
+                        <mat-label>Text</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                      <mat-form-field  class="col-lg-6" appearance="fill">
+                        <mat-label>Sentiment</mat-label>
+                        <mat-select>
+                          <mat-option value="one">neg</mat-option>
+                          <mat-option value="two">pos</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field  class="col-lg-6" appearance="fill">
+                        <mat-label>Dialect</mat-label>
+                        <mat-select>
+                          <mat-option value="one">Arabizi</mat-option>
+                          <mat-option value="two">Msa</mat-option>
+                          <mat-option value="three">Ard</mat-option>
+                          <mat-option value="four">Fr</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-6 example-full-width" appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      
                 </div>
             </div>
         </div>
+
+        
+    </div>
+<br>
+    <div class="card">
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Update Data</h4>
+            <p class="card-category">Created using Roboto Font Family</p>
+        </div>
+        <div class="card-body">
+            <div id="typography">
+                <div class="card-title">
+                    <h6> You can update Data here</h6>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-lg-6" appearance="fill">
+                        <mat-label>Text</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                      <mat-form-field  class="col-lg-6" appearance="fill">
+                        <mat-label>Sentiment</mat-label>
+                        <mat-select>
+                          <mat-option value="one">neg</mat-option>
+                          <mat-option value="two">pos</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field  class="col-lg-6" appearance="fill">
+                        <mat-label>Dialect</mat-label>
+                        <mat-select>
+                          <mat-option value="one">Arabizi</mat-option>
+                          <mat-option value="two">Msa</mat-option>
+                          <mat-option value="three">Ard</mat-option>
+                          <mat-option value="four">Fr</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-6 example-full-width" appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      
+                </div>
+            </div>
+        </div>
+
+        
     </div>
 </div>

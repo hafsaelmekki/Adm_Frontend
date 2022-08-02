@@ -74,29 +74,24 @@
      
 
       <form class="example-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date" formControlName="fromDate" type="text">
+              <input matEndDate placeholder="End date" formControlName="toDate" type="text">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>From Date</mat-label>
-          <input formControlName="fromDate" type="text" matInput placeholder="YYYY-mm-dd" value="2021-01-01" >
-          
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>To Date</mat-label>
-            <input formControlName="toDate" type="text" matInput placeholder="YYYY-mm-dd" value="2021-01-08">
-           
-          </mat-form-field>
-          <button mat-raised-button type="submit" color="accent" >Submit</button>
+          <button type="submit" class="btn btn-info">Submit</button>
       </form>
       
       <div class="row">
           <div class="col-md-4">
               <div class="card card-chart">
-                  <div class="chart-container card-header card-header-success">
+                  <div class="chart-container card-headerr card-header-secondary">
                     <div width="400" height="400">
                         <canvas id="canvas">{{chart}}</canvas>
                       </div>
@@ -115,7 +110,7 @@
           </div>
           <div class="col-md-4">
               <div class="card card-chart">
-                  <div class="chart-container card-header card-header-warning">
+                  <div class="chart-container card-headerr card-header-secondary">
                     <div width="400" height="400">
                         <canvas id="canvas2">{{chartPie}}</canvas>
                       </div>
@@ -133,7 +128,7 @@
           </div>
           <div class="col-md-4">
               <div class="card card-chart">
-                  <div class="chart-container card-header card-header-danger">
+                  <div class="chart-container card-headerr card-header-secondary">
                     <div width="400" height="200">
                         <canvas id="canvas3">{{chartBar}}</canvas>
                       </div>
