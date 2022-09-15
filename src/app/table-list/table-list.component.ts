@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { comment } from 'app/Models/Comment';
 import { ChartsService } from 'app/services/charts.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-table-list',
@@ -13,7 +15,13 @@ export class TableListComponent implements OnInit, AfterViewInit {
   comments: comment[] = [];
   dataSource= new MatTableDataSource<comment>(this.comments);
   displayedColumns: string[] = ['id' , 'Text' , 'Sentiment' , 'Dialect','PostingDate','Options'];
+  
   ngOnInit() {
+    function convertDate(inputFormat) {
+      function pad(s) { return (s < 10) ? '0' + s : s; }
+      var d = new Date(inputFormat)
+      return [ d.getFullYear(), pad(d.getMonth()+1), pad(d.getDate())].join('-')
+    }
     this.retreive_comment();
   }
 
@@ -23,7 +31,7 @@ export class TableListComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private service: ChartsService) {}
+  constructor(private service: ChartsService,private router: Router) {}
 
   
 
@@ -36,12 +44,16 @@ export class TableListComponent implements OnInit, AfterViewInit {
   }
   delete(comment:comment){
     this.service.delete_comment(comment.id).subscribe(response => {
-      this.comments = this.comments.filter(item => {
-        return item.id !== comment.id;
-      });
+      console.log(response)
     })
+    window.location.reload();
+    
+    
 }
-
+  btnClick= function () {
+    this.router.navigateByUrl('/typography');
+  };
+  
 
   
   }

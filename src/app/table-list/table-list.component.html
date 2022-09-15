@@ -28,7 +28,7 @@
                               </ng-container>
                               <ng-container matColumnDef="PostingDate">
                                 <th mat-header-cell *matHeaderCellDef><strong>Posting Date</strong></th>
-                                <td mat-cell *matCellDef="let row">{{row.posting_date}}</td>
+                                <td mat-cell *matCellDef="let row">{{row.posting_date|date: 'EEEE, MMMM d, y'}}</td>
                               </ng-container>
                               <ng-container matColumnDef="Options">
                                 <th mat-header-cell *matHeaderCellDef><strong>Options</strong></th>
@@ -36,7 +36,7 @@
                                     <ul>
                                         
                                         <button type="button" class="btn btn-outline-info" (click)="delete(row)">Delete</button>
-                                        <button type="button" class="btn btn-outline-info" (click)="delete(row)">Update</button>
+                                        <button type="button" class="btn btn-outline-info" [routerLink]="['/typography',row.id,row.Text,row.Sentiment,row.Dialect,row.posting_date]">Update</button>
                                     </ul>
                                 </td>
                               </ng-container>
@@ -45,7 +45,7 @@
                           </table>
                           <mat-paginator #paginator [length]="this.comments.length"
                             [pageSize]="5"
-                            [pageSizeOptions]="[5, 10, 25, 50]"
+                            [pageSizeOptions]="[2, 10, 25, 50]"
                             aria-label="Select page">
                           </mat-paginator>
 

@@ -2,94 +2,139 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
-        <div class="card-header card-header-info">
-            <h4 class="card-title">Add Data</h4>
-            <p class="card-category">Created using Roboto Font Family</p>
-        </div>
-        <div class="card-body">
-            <div id="typography">
-                <div class="card-title">
-                    <h6> You can insert Data here</h6>
-                </div>
-                <div class="row">
-                    <mat-form-field class="col-lg-6" appearance="fill">
-                        <mat-label>Text</mat-label>
-                        <input matInput>
-                      </mat-form-field>
-                      <mat-form-field  class="col-lg-6" appearance="fill">
-                        <mat-label>Sentiment</mat-label>
-                        <mat-select>
-                          <mat-option value="one">neg</mat-option>
-                          <mat-option value="two">pos</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <mat-form-field  class="col-lg-6" appearance="fill">
-                        <mat-label>Dialect</mat-label>
-                        <mat-select>
-                          <mat-option value="one">Arabizi</mat-option>
-                          <mat-option value="two">Msa</mat-option>
-                          <mat-option value="three">Ard</mat-option>
-                          <mat-option value="four">Fr</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6 example-full-width" appearance="fill">
-                        <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="picker">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                      
-                </div>
-            </div>
-        </div>
+      <div class="card-header card-header-info">
+          <h2 class="card-title">Add Data</h2>
+          <p class="card-category">Created using Roboto Font Family</p>
+      </div>
+      <div class="card-body">
+          <div id="typography">
+              <div class="card-title">
+                  <h3> You can insert Data here</h3>
+              </div>
+              <div class="row">
+                <form [formGroup]="checkoutForm2" (ngSubmit)="addData()"  >
+                  <mat-form-field class="col-lg-6" appearance="fill">
+                      <mat-label>Text</mat-label>
+                      <input name="Text" formControlName="Text" matInput>
+                    </mat-form-field>
+                    <mat-form-field  class="col-lg-6" appearance="fill">
+                      <mat-label>Sentiment</mat-label>
+                      <mat-select name="Sentiment" formControlName="Sentiment">
+                        <mat-option  value="neg">neg</mat-option>
+                        <mat-option  value="pos">pos</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field  class="col-lg-6" appearance="fill">
+                      <mat-label>Dialect</mat-label>
+                      <mat-select name="Dialect" formControlName="Dialect">
+                        <mat-option  value="Arabizi">Arabizi</mat-option>
+                        <mat-option  value="MSA">Msa</mat-option>
+                        <mat-option  value="ARD">Ard</mat-option>
+                        <mat-option  value="Fr">Fr</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-6 example-full-width" appearance="fill">
+                      <mat-label>Choose a date</mat-label>
+                      <input name="posting_date" formControlName="posting_date" matInput [matDatepicker]="picker">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field> 
+                    <button type="submit" class=" btn btn-outline-info">Add</button>
+                  </form>
+              </div>
+          </div>
+      </div>
 
-        
-    </div>
+      
+  </div>
 <br>
     <div class="card">
         <div class="card-header card-header-info">
-            <h4 class="card-title">Update Data</h4>
+            <h2 class="card-title">Update Data</h2>
             <p class="card-category">Created using Roboto Font Family</p>
         </div>
         <div class="card-body">
             <div id="typography">
                 <div class="card-title">
-                    <h6> You can update Data here</h6>
+                    <h3> You can update Data here</h3>
                 </div>
                 <div class="row">
+                  <form [formGroup]="checkoutForm" (ngSubmit)="updateData()" >
                     <mat-form-field class="col-lg-6" appearance="fill">
                         <mat-label>Text</mat-label>
-                        <input matInput>
+                        <input name="Text"  formControlName="Text" matInput>
                       </mat-form-field>
                       <mat-form-field  class="col-lg-6" appearance="fill">
                         <mat-label>Sentiment</mat-label>
-                        <mat-select>
-                          <mat-option value="one">neg</mat-option>
-                          <mat-option value="two">pos</mat-option>
+                        <mat-select name="Sentiment" formControlName="Sentiment">
+                          <mat-option  value="neg">neg</mat-option>
+                          <mat-option  value="pos">pos</mat-option>
                         </mat-select>
                       </mat-form-field>
                       <mat-form-field  class="col-lg-6" appearance="fill">
                         <mat-label>Dialect</mat-label>
-                        <mat-select>
-                          <mat-option value="one">Arabizi</mat-option>
-                          <mat-option value="two">Msa</mat-option>
-                          <mat-option value="three">Ard</mat-option>
-                          <mat-option value="four">Fr</mat-option>
+                        <mat-select name="Dialect" formControlName="Dialect">
+                          <mat-option  value="Arabizi">Arabizi</mat-option>
+                          <mat-option  value="MSA">Msa</mat-option>
+                          <mat-option  value="ARD">Ard</mat-option>
+                          <mat-option  value="Fr">Fr</mat-option>
                         </mat-select>
                       </mat-form-field>
                       <mat-form-field class="col-lg-6 example-full-width" appearance="fill">
                         <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="picker">
+                        <input name="posting_date" formControlName="posting_date" matInput [matDatepicker]="picker">
                         <mat-hint>MM/DD/YYYY</mat-hint>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                      
+                      </mat-form-field> 
+                      <button type="submit" class=" col-lg-12 btn btn-outline-info">Update</button>
+                    </form>
                 </div>
             </div>
         </div>
 
         
     </div>
+    <div class="card">
+      <div class="card-header card-header-info">
+          <h2 class="card-title">Sentiment / Dialect Detector</h2>
+          <p class="card-category">Created using Roboto Font Family</p>
+      </div>
+      <div class="card-body">
+          <div id="typography">
+              <div class="card-title">
+                  <h3> You can test the model here</h3>
+              </div>
+              <div class="row">
+                <form [formGroup]="checkoutForm3" (ngSubmit)="predict()" >
+                  <mat-form-field class="col-lg-6" appearance="fill">
+                      <mat-label>Text</mat-label>
+                      <input name="Text"  formControlName="Text" matInput>
+                    </mat-form-field>
+                    
+                    <button type="submit" class=" col-lg-12 btn btn-outline-info">Predict</button>
+                  </form>
+                  <br>
+                  <h5 *ngIf="this.sent">The text Sentiment is <strong>{{this.sent}}</strong> and Dialect is <strong>{{this.dial}}</strong></h5>
+              </div>
+              <div class="row">
+                
+                <div class="col-md-6" width="400" height="400">
+                  <h3 *ngIf="this.sent" class="sous_titre">Sentiment Probability Prediction</h3>
+                  <canvas id="canvas">{{chart}}</canvas>
+                </div>
+                
+                <div class="col-md-6" width="400" height="400">
+                  <h3 *ngIf="this.sent" class="sous_titre">Dialect Probability Prediction</h3>
+                  <canvas id="canvas2">{{chart2}}</canvas>
+                </div>
+              </div>
+              
+          </div>
+      </div>
+
+      
+  </div>
+
 </div>
